@@ -1,4 +1,4 @@
-FROM node:22.17.1-alpine AS base
+FROM node:22.18.0-alpine AS base
 WORKDIR /usr/src/wpp-server
 ENV NODE_ENV=production PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 COPY package.json ./
@@ -11,7 +11,7 @@ RUN apk update && \
     make \
     libc6-compat \
     && rm -rf /var/cache/apk/*
-RUN yarn install --production --pure-lockfile && \
+RUN yarn install --production && \
     yarn add sharp --ignore-engines && \
     yarn cache clean
 
@@ -19,7 +19,7 @@ FROM base AS build
 WORKDIR /usr/src/wpp-server
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 COPY package.json  ./
-RUN yarn install --production=false --pure-lockfile
+RUN yarn install --production=false
 RUN yarn cache clean
 COPY . .
 RUN yarn build
