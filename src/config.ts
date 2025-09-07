@@ -2,8 +2,8 @@ import { ServerOptions } from './types/ServerOptions';
 
 export default {
   secretKey: 'THISISMYSECURETOKEN',
-  host: 'http://localhost',
-  port: '21465',
+  host: 'http://0.0.0.0',
+  port: '21460',
   deviceName: 'WppConnect',
   poweredBy: 'WPPConnect-Server',
   startAllSession: true,

@@ -1,8 +1,8 @@
 version: "3"
 
 services:
-  wppconnect:
-    container_name: wpp-server
+  my-wppconnect:
+    container_name: my-wppconnect-server
     restart: unless-stopped
     build:
       context: .
@@ -10,7 +10,7 @@ services:
       - ./config.ts:/usr/src/wpp-server/config.ts
       - ./wppconnect_tokens:/usr/src/wpp-server/tokens
     ports:
-      - "21465:21465"
+      - "0.0.0.0:21460:21460"
 
 volumes:
   wppconnect_tokens: {}      
